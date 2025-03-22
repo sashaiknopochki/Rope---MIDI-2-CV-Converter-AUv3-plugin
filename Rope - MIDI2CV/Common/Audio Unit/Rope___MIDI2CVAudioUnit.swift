@@ -1,11 +1,16 @@
-//___FILEHEADER___
+//
+//  Rope___MIDI2CVAudioUnit.swift
+//  Rope - MIDI2CV
+//
+//  Created by Aleksandr Sudin on 22.03.25.
+//
 
 import AVFoundation
 
-public class ___PACKAGENAMEASIDENTIFIER___AudioUnit: AUAudioUnit, @unchecked Sendable
+public class Rope___MIDI2CVAudioUnit: AUAudioUnit, @unchecked Sendable
 {
 	// C++ Objects
-	var kernel = ___PACKAGENAMEASIDENTIFIER___DSPKernel()
+	var kernel = Rope___MIDI2CVDSPKernel()
     var processHelper: AUProcessHelper?
 
 	private var outputBus: AUAudioUnitBus?

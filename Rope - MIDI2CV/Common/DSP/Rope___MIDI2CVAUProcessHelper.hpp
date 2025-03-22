@@ -1,4 +1,9 @@
-//___FILEHEADER___
+//
+//  Rope___MIDI2CVAUProcessHelper.hpp
+//  Rope - MIDI2CV
+//
+//  Created by Aleksandr Sudin on 22.03.25.
+//
 
 #pragma once
 
@@ -6,13 +11,13 @@
 #import <AVFoundation/AVFoundation.h>
 
 #include <vector>
-#include "___PACKAGENAMEASIDENTIFIER___DSPKernel.hpp"
+#include "Rope___MIDI2CVDSPKernel.hpp"
 
 //MARK:- AUProcessHelper Utility Class
 class AUProcessHelper
 {
 public:
-    AUProcessHelper(___PACKAGENAMEASIDENTIFIER___DSPKernel& kernel)
+    AUProcessHelper(Rope___MIDI2CVDSPKernel& kernel)
     : mKernel{kernel}
     {
     }
@@ -120,6 +125,6 @@ public:
 		
 	}
 private:
-    ___PACKAGENAMEASIDENTIFIER___DSPKernel& mKernel;
+    Rope___MIDI2CVDSPKernel& mKernel;
     std::vector<float*> mOutputBuffers;
 };

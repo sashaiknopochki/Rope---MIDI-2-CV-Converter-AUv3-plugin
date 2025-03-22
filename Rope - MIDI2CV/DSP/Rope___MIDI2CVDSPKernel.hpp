@@ -1,4 +1,9 @@
-//___FILEHEADER___
+//
+//  Rope___MIDI2CVDSPKernel.hpp
+//  Rope - MIDI2CV
+//
+//  Created by Aleksandr Sudin on 22.03.25.
+//
 
 #pragma once
 
@@ -9,13 +14,13 @@
 #import <span>
 
 #import "SinOscillator.h"
-#import "___PACKAGENAMEASIDENTIFIER___ParameterAddresses.h"
+#import "Rope___MIDI2CVParameterAddresses.h"
 
 /*
- ___PACKAGENAMEASIDENTIFIER___DSPKernel
+ Rope___MIDI2CVDSPKernel
  As a non-ObjC class, this is safe to use from render thread.
  */
-class ___PACKAGENAMEASIDENTIFIER___DSPKernel {
+class Rope___MIDI2CVDSPKernel {
 public:
     void initialize(int channelCount, double inSampleRate) {
         mSampleRate = inSampleRate;
@@ -35,10 +40,10 @@ public:
     }
     
     // MARK: - Parameter Getter / Setter
-    // Add a case for each parameter in ___PACKAGENAMEASIDENTIFIER___ParameterAddresses.h
+    // Add a case for each parameter in Rope___MIDI2CVParameterAddresses.h
     void setParameter(AUParameterAddress address, AUValue value) {
         switch (address) {
-            case ___PACKAGENAMEASIDENTIFIER___ParameterAddress::gain:
+            case Rope___MIDI2CVParameterAddress::gain:
                 mGain = value;
                 break;
         }
@@ -48,7 +53,7 @@ public:
         // Return the goal. It is not thread safe to return the ramping value.
         
         switch (address) {
-            case ___PACKAGENAMEASIDENTIFIER___ParameterAddress::gain:
+            case Rope___MIDI2CVParameterAddress::gain:
                 return (AUValue)mGain;
                 
             default: return 0.f;
@@ -139,7 +144,7 @@ public:
     
     void handleMIDIEventList(AUEventSampleTime now, AUMIDIEventList const* midiEvent) {
         auto visitor = [] (void* context, MIDITimeStamp timeStamp, MIDIUniversalMessage message) {
-            auto thisObject = static_cast<___PACKAGENAMEASIDENTIFIER___DSPKernel *>(context);
+            auto thisObject = static_cast<Rope___MIDI2CVDSPKernel *>(context);
             
             switch (message.type) {
                 case kMIDIMessageTypeChannelVoice2: {
